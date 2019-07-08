@@ -6,3 +6,15 @@ before_install:
 
 script:
   - docker run -e CI=true satshi/docker-react npm run test -- --coverage
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  name: "docker-react"
+  env: "DockerReact-env"
+  bucket_name: "elasticbeanstalk-us-east-1-674891442009"
+  bucket_path: "docker-react"
+  on:
+    branch: master
+  access_key_id: $aws-access-key
+  secret_acces_key: 
+    secure: "$aws-secret-key"  
